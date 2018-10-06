@@ -74,9 +74,49 @@ module.exports = __webpack_require__(1);
 
 /***/ }),
 /* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_koa___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_koa__);
+
+
+const app = new __WEBPACK_IMPORTED_MODULE_0_koa___default.a();
+
+// logger
+
+app.use(async (ctx, next) => {
+  await next();
+  const rt = ctx.response.get("X-Response-Time");
+  console.log(`${ctx.method} ${ctx.url} - ${rt}`);
+});
+
+// x-response-time
+
+app.use(async (ctx, next) => {
+  const start = Date.now();
+  await next();
+  const ms = Date.now() - start;
+  ctx.set("X-Response-Time", `${ms}ms`);
+});
+
+// response
+
+app.use(async ctx => {
+  ctx.body = {
+    data: [{ id: 1, city: "Paris", temperature: 25 }, { id: 2, city: "London", temperature: 14 }]
+  };
+});
+
+app.listen(3000);
+console.log("Listening on port ", 3000);
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports) {
 
-console.log("Hello Guys!");
+module.exports = require("koa");
 
 /***/ })
 /******/ ]);
