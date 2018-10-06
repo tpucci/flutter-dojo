@@ -1,0 +1,16 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "flutter dojo api",
+  "main": "index.js",
+  "repository": "https://github.com/tpucci/flutter-dojo",
+  "author": "Thomas Pucci",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "backpack"
+  },
+  "devDependencies": {
+    "backpack-core": "^0.7.0"
+  }
+}

@@ -1,0 +1,12 @@
+version: "3"
+services:
+  api:
+    container_name: flutter-dojo
+    build:
+      context: ./api
+    env_file: ./api/.env
+    image: flutter-dojo
+    volumes:
+      - ./api:/api/
+    ports:
+      - 3000:3000
